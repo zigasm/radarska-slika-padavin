@@ -1,3 +1,2 @@
-import { getWarnings } from "@/lib/arso/warnings";
-
-export default async function Page(){const w=await getWarnings();return <div className="space-y-4"><h1 className="text-3xl font-bold">Vremenska opozorila za Slovenijo</h1>{w.items.length? w.items.map((x,i)=><article key={i} className="rounded bg-white p-3 shadow"><h2 className="font-semibold">{x.event}</h2><p>{x.description}</p><p className="text-sm">Stopnja: {x.severity}</p></article>):<p>Trenutno ni aktivnih opozoril ali vir ni dosegljiv.</p>}<p className="text-xs">Vir podatkov: ARSO / meteo.si • Posodobljeno: {w.fetchedAt}</p></div>}
+import { getWarningsData } from "@/lib/arso/parseWarnings";
+export default async function Page(){const w=await getWarningsData();return <div className="space-y-4"><h1 className="text-3xl font-bold">Vremenska opozorila za Slovenijo</h1>{w.length? w.map((x,i)=><section key={i} className="rounded bg-white p-3 shadow"><h2 className="font-semibold">{x.title}</h2><p>{x.summary}</p></section>):<p>Vir opozoril trenutno ni dosegljiv. Poskusite kasneje.</p>}<p className="text-xs">Vir podatkov: <a href="https://meteo.arso.gov.si/" className="underline">ARSO / meteo.si</a></p></div>}

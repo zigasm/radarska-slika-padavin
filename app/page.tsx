@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import RadarCard from "@/components/RadarCard";
 import AdSlot from "@/components/AdSlot";
-import { getNationalForecast } from "@/lib/arso/forecasts";
-import { getWarnings } from "@/lib/arso/warnings";
-
+import PlaceSearch from "@/components/PlaceSearch";
+import { getForecast } from "@/lib/arso/parseForecast";
+import { getWarningsData } from "@/lib/arso/parseWarnings";
+import { PLACES } from "@/lib/arso/places";
 export const metadata: Metadata = { title: "Vreme Slovenija – radarska slika padavin in vremenska napoved", description: "Vreme Slovenija, radar padavin, opozorila in napoved.", alternates: { canonical: "/" } };
-
-export default async function Home() { const forecast=await getNationalForecast(); const warnings=await getWarnings(); return <div className="space-y-6"><h1 className="text-3xl font-bold">Vreme Slovenija – radarska slika padavin in vremenska napoved</h1><RadarCard /><AdSlot id="homepage-mid" /><section><h2 className="text-xl font-semibold">Napoved</h2><p>{forecast.blocks[0]?.summary||"Ni podatkov."}</p><p className="text-xs">Vir podatkov: ARSO / meteo.si • {forecast.fetchedAt}</p></section><section><h2 className="text-xl font-semibold">Opozorila</h2><p>{warnings.items[0]?.event||"Ni aktivnih opozoril."}</p><p className="text-xs">Vir podatkov: ARSO / meteo.si • {warnings.fetchedAt}</p></section><section><h2 className="text-xl font-semibold">Hitre povezave</h2><div className="flex gap-3"><Link href="/radarska-slika-padavin">Radar</Link><Link href="/vremenska-napoved">Napoved</Link></div></section></div>; }
+export default async function Home(){const fc=await getForecast();const warnings=await getWarningsData();return <div className="space-y-6"><h1 className="text-3xl font-bold">Vreme Slovenija – radarska slika padavin in vremenska napoved</h1><RadarCard/><PlaceSearch places={PLACES}/><section className="rounded bg-white p-3 shadow"><h2 className="font-semibold">Napoved za Slovenijo</h2><p>{fc.forecastText}</p><p className="text-xs">Vir podatkov: <a href="https://meteo.arso.gov.si/" className="underline">ARSO / meteo.si</a></p></section><section className="rounded bg-white p-3 shadow"><h2 className="font-semibold">Vremenska opozorila</h2><p>{warnings[0]?.title||"Opozorila trenutno niso na voljo."}</p><p className="text-xs">Vir podatkov: <a href="https://meteo.arso.gov.si/" className="underline">ARSO / meteo.si</a></p></section><AdSlot id="homepage-mid"/><div className="flex gap-3"><Link href="/radarska-slika-padavin">Radar</Link><Link href="/vremenska-napoved">Napoved</Link></div></div>}
