@@ -1,2 +1,3 @@
 import { NextResponse } from "next/server";
-export async function GET(){return NextResponse.json({message:"Phase 1 placeholder"});}
+import { getNationalForecast } from "@/lib/arso/forecasts";
+export async function GET(){return NextResponse.json(await getNationalForecast());}
