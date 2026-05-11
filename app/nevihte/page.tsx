@@ -1,0 +1,2 @@
+import { getWarnings } from "@/lib/arso/warnings";
+export default async function Page(){const w=await getWarnings();return <div className="space-y-4"><h1 className="text-3xl font-bold">Nevihte v Sloveniji</h1><p>Nevihte in povezani vremenski pojavi.</p><p>Aktualno opozorilo: {w.items[0]?.event||"Ni aktivnih opozoril."}</p><p className="text-xs">Vir podatkov: ARSO / meteo.si • {w.fetchedAt}</p></div>}

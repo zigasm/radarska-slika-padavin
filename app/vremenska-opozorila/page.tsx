@@ -1,0 +1,2 @@
+import { getWarningsData } from "@/lib/arso/parseWarnings";
+export default async function Page(){const w=await getWarningsData();return <div className="space-y-4"><h1 className="text-3xl font-bold">Vremenska opozorila za Slovenijo</h1>{w.length? w.map((x,i)=><section key={i} className="rounded bg-white p-3 shadow"><h2 className="font-semibold">{x.title}</h2><p>{x.summary}</p></section>):<p>Vir opozoril trenutno ni dosegljiv. Poskusite kasneje.</p>}<p className="text-xs">Vir podatkov: <a href="https://meteo.arso.gov.si/" className="underline">ARSO / meteo.si</a></p></div>}
