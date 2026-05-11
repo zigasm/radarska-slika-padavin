@@ -1,0 +1,1 @@
+export default function Page(){return <div className="space-y-4"><h1 className="text-3xl font-bold">sneg</h1><p>Vsebina strani v pripravi.</p><p className="text-xs">Vir podatkov: ARSO / meteo.si</p></div>}
