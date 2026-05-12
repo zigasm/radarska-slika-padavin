@@ -1,0 +1,1 @@
+export const PLACES = ["ljubljana","maribor","celje","kranj","koper","novo-mesto","nova-gorica","velenje","murska-sobota","ptuj","trbovlje","kamnik","jesenice","domzale","skofja-loka","izola","postojna","kocevje","slovenj-gradec","bled","bohinj","bovec","portoroz","piran","ajdovscina","idrija","crnomelj","brezice","ravne-na-koroskem"];
